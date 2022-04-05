@@ -1,2 +1,2 @@
 # 1337x.to
-My version of th 1337x.to website.
+My version of the 1337x.to website.
