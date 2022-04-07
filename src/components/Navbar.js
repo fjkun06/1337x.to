@@ -4,16 +4,16 @@ import {
   Stack,
   Box,
   Typography,
-  useMediaQuery,
   Backdrop,
 } from "@mui/material";
-import { deepOrange, green } from "@mui/material/colors";
+import { green } from "@mui/material/colors";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/material/styles";
 import { experimental_sx as sx } from "@mui/system";
 import "../fonts/Oswald/Oswald-Regular.ttf";
 import "./nav.css";
 import { useState } from "react";
+import { Breakpoints } from "./customBreakpoints";
 
 export function Navbar() {
   //Controlling Backdrop display
@@ -21,11 +21,9 @@ export function Navbar() {
   const opener = () => setOpen(true); //activates Backdrop by setting open to true
   const closer = () => setOpen(false); //deactivates Backdrop by setting open to false
 
-  //defining custom breakpoints with useMediaQuery hook
-  const matches = useMediaQuery("(min-width:200px) and (max-width:767px)");
-  const matches2 = useMediaQuery("(min-width:768px) and (max-width:1129px)");
-  const special = useMediaQuery("(min-width:1260px)");
-
+//using custom breakpoints
+  const [matches,matches2,special] = Breakpoints()
+  
   //Styling typography to use as Navbar item
   const NavBox = styled(Typography)(
     sx({
@@ -46,8 +44,9 @@ export function Navbar() {
   //if the breakpoints corresponding to 'matches' rednder
   return matches ? (
     //this component
-    <Grid container p={2} bgcolor="orangered">
-      <Grid item container justifyContent="flex-end" pt={1.3}>
+    <Grid container p={0} component="nav" sx={{position:"relative",}}>
+    {/* <Grid container p={2} bgcolor="yellow" component="nav" sx={{height:0}}> */}
+      <Grid item container justifyContent="flex-end" pt={1.3} sx={{position:"absolute",top:"2.2vh",right:"4vw",zIndex:999}}>
         <MenuIcon
           sx={{
             border: "1px solid black",
@@ -168,9 +167,10 @@ export function Navbar() {
         container
         component="nav"
         sx={{
-            width: "100vw",
+            width: "99vw",
           height: !matches2 ? 40 : 90,
-          bgcolor: deepOrange["A700"],
+          bgcolor: 'rgb(164,0,0)',
+        //   bgcolor: deepOrange["A700"],
         }}
       >
         <Grid

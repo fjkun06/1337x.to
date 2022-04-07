@@ -1,32 +1,34 @@
-import { Box, Grid, Button, Modal,Backdrop } from "@mui/material";
-import React, { useState } from "react";
-import SimpleBackdrop from "./components/Backdrop";
+import { Box, Grid} from "@mui/material";
+import React from "react";
+import { Body } from "./components/Body";
 import { Navbar } from "./components/Navbar";
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 
 function App() {
-  
-
   return (
     <Box
+      component=""
       sx={{
-        width: "100vw",
-        height: "100vh",
+        width: "10vw",
+        height: { xs: "auto", md: "100vh" },
         // border: "3px dashed red",
         m: 0,
         p: 0,
-        boxSizing: "border-box",bgcolor:"orangered"
+        boxSizing: "border-box",
+        // border: "4px solid yellow"
+        // bgcolor: "white",
       }}
     >
-      <Grid container>
-        <Navbar />
+      <Grid container direction="row-reverse" justifyContent={"left"}>
+        <Grid item>
+          <Navbar />
+        </Grid>
+        <Grid item>
+      <Body />
+        </Grid>
       </Grid>
 
-      <br />
-      <Box>
-        {/* <SimpleBackdrop /> */}
-      </Box>
     </Box>
   );
 }
